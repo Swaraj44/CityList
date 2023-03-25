@@ -49,4 +49,79 @@ public class CityListTest {
         assertEquals(0, city.compareTo(cityList.getCities().get(0)));
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
     }
+
+    @Test
+
+    public void test_delete() {
+        CityList cityList = new CityList();
+
+        City citya = new City("Charlottetown", "Prince Edward Island");
+        City cityb = new City("jessore", "Khulna");
+
+        cityList.add(citya);
+        cityList.add(cityb);
+
+        cityList.delete(citya);
+
+        assertTrue(!cityList.getCities().contains(citya));
+        assertEquals(1, cityList.getCities().stream().count());
+
+    }
+
+
+
+
+
+    @Test
+
+    public void test_delete_exception() {
+        CityList cityList = new CityList();
+
+        City citya = new City("Charlottetown", "Prince Edward Island");
+        City cityb = new City("jessore", "Khulna");
+
+        cityList.add(citya);
+        cityList.add(cityb);
+
+        cityList.delete(citya);
+
+        assertThrows(IllegalArgumentException.class,()->{
+            cityList.delete(cityb);
+        });
+
+    }
+
+
+    @Test
+
+    public void test_count() {
+        CityList cityList = new CityList();
+
+        City citya = new City("Charlottetown", "Prince Edward Island");
+        City cityb = new City("jessore", "Khulna");
+
+        cityList.add(citya);
+        cityList.add(cityb);
+
+        assertEquals(1,cityList.count());
+    }
+
+    @Test
+    public void test_getcities() {
+        CityList cityList = new CityList();
+
+        City citya = new City("Charlottetown", "Prince Edward Island");
+        City cityb = new City("jessore", "Dhaka");
+
+        cityList.add(citya);
+        //assertEquals(0,citya.compareTo(cityList.getCitiesFun(0).get(0)));
+        cityList.add(cityb);
+
+        assertEquals(0,citya.compareTo(cityList.getCitiesFun(1).get(1)));
+        assertEquals(0,cityb.compareTo(cityList.getCitiesFun(1).get(0)));
+
+    }
+
+
+
 }
